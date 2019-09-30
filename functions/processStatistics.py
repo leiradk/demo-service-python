@@ -18,7 +18,6 @@ def processStatistics(start = datetime.date(2019,1,1), end = datetime.date(2019,
             dataDate = processDate(dataList['date'])
             start = processDate(str(start))
             end = processDate(str(end))
-            print(str(dataDate))
             if start <= dataDate and end >= dataDate:  
                 data.append(dataList)
 
@@ -30,16 +29,16 @@ def processDate(datestr: str):
     """Process the date to compare one's date at this format %Y-%m-%dT%H:%M:%S.%fZ (2019-04-01T00:00:00.000Z) and %Y-%m-%dT%H:%M:%SZ (2019-04-01T00:00:00Z)"""
     try:
         dtime = datetime.datetime.strptime(datestr,"%Y-%m-%dT%H:%M:%S.%fZ").date()
-        return datet
+        return dtime
     except:
         try:
             dtime = datetime.datetime.strptime(datestr,"%Y-%m-%dT%H:%M:%SZ").date()
-            return datet
+            return dtime
         except:
             try:
                 datestr = datestr.replace("/","-")
                 dtime = datetime.datetime.strptime(datestr,"%Y-%m-%d").date()
-                return datet
+                return dtime
             except:
                 dtime = datetime.datetime.strptime(datestr,"%Y-%m-%d").date()
                 return dtime
