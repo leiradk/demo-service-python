@@ -9,12 +9,12 @@ def processStatistics(start = datetime.date(2019,1,1), end = datetime.date(2019,
     try:
         baseURL = 'https://bitbucket.org/!api/2.0/snippets/tawkto/aA8zqE/4f62624a75da6d1b8dd7f70e53af8d36a1603910/files/webstats.json'
         response = requests.get(baseURL)
-        res = json.loads(json.dumps(response.text))
+        resData = json.loads(json.dumps(response.text))
 
-        res = json.loads(res)
+        resData = json.loads(resData)
         data = []
         
-        for dataList in res:
+        for dataList in resData:
             dataDate = processDate(dataList['date'])
             start = processDate(str(start))
             end = processDate(str(end))
@@ -29,17 +29,17 @@ def processStatistics(start = datetime.date(2019,1,1), end = datetime.date(2019,
 def processDate(datestr: str):
     """Process the date to compare one's date at this format %Y-%m-%dT%H:%M:%S.%fZ (2019-04-01T00:00:00.000Z) and %Y-%m-%dT%H:%M:%SZ (2019-04-01T00:00:00Z)"""
     try:
-        datet = datetime.datetime.strptime(datestr,"%Y-%m-%dT%H:%M:%S.%fZ").date()
+        dtime = datetime.datetime.strptime(datestr,"%Y-%m-%dT%H:%M:%S.%fZ").date()
         return datet
     except:
         try:
-            datet = datetime.datetime.strptime(datestr,"%Y-%m-%dT%H:%M:%SZ").date()
+            dtime = datetime.datetime.strptime(datestr,"%Y-%m-%dT%H:%M:%SZ").date()
             return datet
         except:
             try:
                 datestr = datestr.replace("/","-")
-                datet = datetime.datetime.strptime(datestr,"%Y-%m-%d").date()
+                dtime = datetime.datetime.strptime(datestr,"%Y-%m-%d").date()
                 return datet
             except:
-                datet = datetime.datetime.strptime(datestr,"%Y-%m-%d").date()
-                return datet
+                dtime = datetime.datetime.strptime(datestr,"%Y-%m-%d").date()
+                return dtime
