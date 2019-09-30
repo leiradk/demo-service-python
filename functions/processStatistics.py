@@ -1,4 +1,4 @@
-"""This the function for processing the list of the statistics"""
+"""Functions for processing the list of the statistics"""
 
 import requests
 import json
