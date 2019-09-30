@@ -1,0 +1,14 @@
+# ubuntu or mac
+
+sudo apt-get install python3-pip
+
+sudo pip3 install virtualenv
+
+virtualenv venv 
+
+source venv/bin/activate
+    * (venv) computer-name:~/Documents/test
+
+    * install requirements by npm install or sudo npm install
+    * typing 
+        - pip3 intall flask
